@@ -15,18 +15,25 @@
 #ifndef TAPI_CORE_YAML_H
 #define TAPI_CORE_YAML_H
 
+#include "tapi/Defines.h"
 #include "tapi/Core/Architecture.h"
 #include "tapi/Core/ArchitectureSet.h"
 #include "tapi/Core/ArchitectureSupport.h"
+#include "tapi/Core/AvailabilityInfo.h"
 #include "llvm/ADT/StringSwitch.h"
 #include "llvm/Support/YAMLTraits.h"
-#include "tapi/Core/AvailabilityInfo.h"
+
+
+using namespace llvm;
+using namespace llvm::yaml;
+using llvm::yaml::ScalarTraits;
+
+LLVM_YAML_STRONG_TYPEDEF(uint8_t, SwiftVersion)
 
 using UUID = std::pair<TAPI_INTERNAL::Architecture, std::string>;
-
-LLVM_YAML_STRONG_TYPEDEF(llvm::StringRef, FlowStringRef)
-LLVM_YAML_STRONG_TYPEDEF(uint8_t, SwiftVersion)
 LLVM_YAML_IS_FLOW_SEQUENCE_VECTOR(UUID)
+
+LLVM_YAML_STRONG_TYPEDEF(StringRef, FlowStringRef)
 LLVM_YAML_IS_FLOW_SEQUENCE_VECTOR(FlowStringRef)
 
 namespace llvm {
