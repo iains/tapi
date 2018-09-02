@@ -1,3 +1,18 @@
+# on-700rc2
+
+So I tried this on top of the 7.0.0rc2 sources with the changes here.
+
+plus:
+
+a) Add the ObjcMetadata library from Apple clang-800.0.42.1
+b) symlink tapi into clang/tools/tapi
+c) add  to clang/tools/CMakeLists.txt
+ 
+    add_llvm_external_project(tapi tapi)
+
+currently, 13 tests fail (and the inputs for IVarTest and Simple have to be 
+commented out to get the build to run).
+
 # TAPI
 
 TAPI is a **T**ext-based **A**pplication **P**rogramming **I**nterface. It
