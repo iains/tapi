@@ -3,5 +3,6 @@ add_tapi_unittest(PathTests
   )
 
 target_link_libraries(PathTests
+  PRIVATE
   tapiCore
   )

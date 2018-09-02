@@ -1,5 +1,6 @@
 set(INPUT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../test/Inputs/unittests")
 add_definitions(-DINPUT_PATH="${INPUT_PATH}")
+
 add_tapi_unittest(libtapiTests
   APIVersionTest.cpp
   LinkerInterfaceFileTest_TBD_v1.cpp
@@ -8,6 +9,7 @@ add_tapi_unittest(libtapiTests
   )
 
 target_link_libraries(libtapiTests
+  PRIVATE
   libtapi
   )
 
