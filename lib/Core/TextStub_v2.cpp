@@ -16,6 +16,7 @@
 #include "tapi/Core/ArchitectureSupport.h"
 #include "tapi/Core/InterfaceFile.h"
 #include "tapi/Core/Registry.h"
+#include "tapi/Core/STLExtras.h"
 #include "tapi/Core/YAML.h"
 #include "tapi/Core/YAMLReaderWriter.h"
 #include "tapi/LinkerInterfaceFile.h"
@@ -186,11 +187,11 @@ template <> struct MappingTraits<const InterfaceFile *> {
             break;
           }
         }
-        sort(section.symbols);
-        sort(section.classes);
-        sort(section.ivars);
-        sort(section.weakDefSymbols);
-        sort(section.tlvSymbols);
+        TAPI_INTERNAL::sort(section.symbols);
+        TAPI_INTERNAL::sort(section.classes);
+        TAPI_INTERNAL::sort(section.ivars);
+        TAPI_INTERNAL::sort(section.weakDefSymbols);
+        TAPI_INTERNAL::sort(section.tlvSymbols);
         exports.emplace_back(std::move(section));
       }
 
@@ -233,10 +234,10 @@ template <> struct MappingTraits<const InterfaceFile *> {
             break;
           }
         }
-        sort(section.symbols);
-        sort(section.classes);
-        sort(section.ivars);
-        sort(section.weakRefSymbols);
+        TAPI_INTERNAL::sort(section.symbols);
+        TAPI_INTERNAL::sort(section.classes);
+        TAPI_INTERNAL::sort(section.ivars);
+        TAPI_INTERNAL::sort(section.weakRefSymbols);
         undefineds.emplace_back(std::move(section));
       }
     }

@@ -12,12 +12,14 @@
 ///
 //===----------------------------------------------------------------------===//
 
+#include "tapi/Defines.h"
 #include "tapi/Core/TextAPI_v1.h"
 #include "tapi/Core/ArchitectureSet.h"
 #include "tapi/Core/ArchitectureSupport.h"
 #include "tapi/Core/AvailabilityInfo.h"
 #include "tapi/Core/ExtendedInterfaceFile.h"
 #include "tapi/Core/Framework.h"
+#include "tapi/Core/STLExtras.h"
 #include "tapi/Core/XPI.h"
 #include "tapi/Core/YAML.h"
 #include "llvm/ADT/StringRef.h"
@@ -149,12 +151,12 @@ template <> struct MappingTraits<const ExtendedInterfaceFile *> {
           }
         }
 
-        sort(section.symbols);
-        sort(section.classes);
-        sort(section.classEHs);
-        sort(section.ivars);
-        sort(section.weakDefSymbols);
-        sort(section.tlvSymbols);
+        TAPI_INTERNAL::sort(section.symbols);
+        TAPI_INTERNAL::sort(section.classes);
+        TAPI_INTERNAL::sort(section.classEHs);
+        TAPI_INTERNAL::sort(section.ivars);
+        TAPI_INTERNAL::sort(section.weakDefSymbols);
+        TAPI_INTERNAL::sort(section.tlvSymbols);
         exports.emplace_back(std::move(section));
       }
     }
