@@ -43,12 +43,14 @@ namespace yaml {
 template <> struct ScalarTraits<FlowStringRef> {
   using Impl = ScalarTraits<StringRef>;
   static void output(const FlowStringRef &value, void *ctx, raw_ostream &os) {
-    Impl::output(value, ctx, os);
+    Impl::output(value.value, ctx, os);
   }
   static StringRef input(StringRef value, void *ctx, FlowStringRef &out) {
     return Impl::input(value, ctx, out.value);
   }
-  static bool mustQuote(StringRef name) { return Impl::mustQuote(name); }
+  static QuotingType mustQuote(StringRef S) {
+    return Impl::mustQuote(S);
+  }
 };
 
 using tapi::ObjCConstraint;
@@ -100,7 +102,7 @@ template <> struct ScalarTraits<Architecture> {
     return {};
   }
 
-  static bool mustQuote(StringRef) { return false; }
+  static QuotingType mustQuote(StringRef) { return QuotingType::None; }
 };
 
 using TAPI_INTERNAL::PackedVersion;
@@ -115,7 +117,7 @@ template <> struct ScalarTraits<PackedVersion> {
     return {};
   }
 
-  static bool mustQuote(StringRef) { return false; }
+  static QuotingType mustQuote(StringRef) { return QuotingType::None; }
 };
 
 template <> struct ScalarTraits<SwiftVersion> {
@@ -155,7 +157,7 @@ template <> struct ScalarTraits<SwiftVersion> {
     return StringRef();
   }
 
-  static bool mustQuote(StringRef) { return false; }
+  static QuotingType mustQuote(StringRef) { return QuotingType::None; }
 };
 
 using TAPI_INTERNAL::AvailabilityInfo;
@@ -193,7 +195,7 @@ template <> struct ScalarTraits<AvailabilityInfo> {
     return StringRef();
   }
 
-  static bool mustQuote(StringRef) { return false; }
+  static QuotingType mustQuote(StringRef) { return QuotingType::None; }
 };
 
 template <> struct ScalarTraits<UUID> {
@@ -212,7 +214,7 @@ template <> struct ScalarTraits<UUID> {
     return {};
   }
 
-  static bool mustQuote(StringRef) { return true; }
+  static QuotingType mustQuote(StringRef) { return QuotingType::None; }
 };
 
 } // end namespace yaml.

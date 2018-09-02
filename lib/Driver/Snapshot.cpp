@@ -89,7 +89,7 @@ template <> struct ScalarTraits<Macro> {
     return {};
   }
 
-  static bool mustQuote(StringRef /*unused*/) { return true; }
+  static QuotingType mustQuote(StringRef /*unused*/) { return QuotingType::None; }
 };
 
 template <> struct ScalarEnumerationTraits<VerificationMode> {
