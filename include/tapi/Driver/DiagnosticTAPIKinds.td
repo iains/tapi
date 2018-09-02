@@ -7,6 +7,15 @@
 //
 //===----------------------------------------------------------------------===//
 
+// Textual substitutions which may be performed on the text of diagnostics
+class TextSubstitution<string Text> {
+  string Substitution = Text;
+  // TODO: These are only here to allow substitutions to be declared inline with
+  // diagnostics
+  string Component = "";
+  string CategoryName = "";
+}
+
 // Define the diagnostic severities.
 class Severity<string N> {
   string Name = N;
