@@ -352,22 +352,24 @@ static Error readObjectiveCMetadata(MachOObjectFile *object,
       if (!name)
         return name.takeError();
 
+#if HACKED_OUT
       auto isDynamic = property.isDynamic();
       if (!isDynamic)
         return isDynamic.takeError();
+#endif
 
       auto setter = property.getSetter();
       if (!setter)
         return setter.takeError();
       if (!setter->empty())
         file->addObjCSelector(objcClass, *setter, arch,
-                              /*isInstanceMethod=*/true, *isDynamic, access);
+                              /*isInstanceMethod=*/true, /**isDynamic*/ false, access);
 
       auto getter = property.getGetter();
       if (!getter)
         return getter.takeError();
       file->addObjCSelector(objcClass, *getter, arch, /*isInstanceMethod=*/true,
-                            *isDynamic, access);
+                            /**isDynamic*/ false, access);
     }
 
     auto classMethods = objcClassMeta->classMethods();
@@ -432,22 +434,24 @@ static Error readObjectiveCMetadata(MachOObjectFile *object,
       if (!name)
         return name.takeError();
 
+#if HACKED_OUT
       auto isDynamic = property.isDynamic();
       if (!isDynamic)
         return isDynamic.takeError();
+#endif
 
       auto setter = property.getSetter();
       if (!setter)
         return setter.takeError();
       if (!setter->empty())
         file->addObjCSelector(objcCategory, *setter, arch,
-                              /*isInstanceMethod=*/true, *isDynamic, access);
+                              /*isInstanceMethod=*/true, /**isDynamic*/false, access);
 
       auto getter = property.getGetter();
       if (!getter)
         return getter.takeError();
       file->addObjCSelector(objcCategory, *getter, arch,
-                            /*isInstanceMethod=*/true, *isDynamic, access);
+                            /*isInstanceMethod=*/true, /**isDynamic*/false, access);
     }
 
     auto classMethods = category->classMethods();
@@ -506,22 +510,24 @@ static Error readObjectiveCMetadata(MachOObjectFile *object,
       if (!name)
         return name.takeError();
 
+#if HACKED_OUT
       auto isDynamic = property.isDynamic();
       if (!isDynamic)
         return isDynamic.takeError();
+#endif
 
       auto setter = property.getSetter();
       if (!setter)
         return setter.takeError();
       if (!setter->empty())
         file->addObjCSelector(objcProtocol, *setter, arch,
-                              /*isInstanceMethod=*/true, *isDynamic);
+                              /*isInstanceMethod=*/true, /**isDynamic*/false);
 
       auto getter = property.getGetter();
       if (!getter)
         return getter.takeError();
       file->addObjCSelector(objcProtocol, *getter, arch,
-                            /*isInstanceMethod=*/true, *isDynamic);
+                            /*isInstanceMethod=*/true, /**isDynamic*/false);
     }
 
     auto classMethods = protocol->classMethods();
