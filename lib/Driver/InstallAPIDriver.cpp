@@ -331,7 +331,8 @@ getCodeCoverageSymbols(DiagnosticsEngine &diag,
   std::string installDir = toolchainBinDir;
   std::vector<std::unique_ptr<ExtendedInterfaceFile>> files;
   for (const auto &target : targets) {
-    const char *clangArgs[] = {"clang",
+    SmallVector<const char*, 128> ClangArgv =
+			      {"clang",
                                "-target",
                                target.str().c_str(),
                                "-dynamiclib",
@@ -353,12 +354,16 @@ getCodeCoverageSymbols(DiagnosticsEngine &diag,
                                      ec);
     FileRemover removeStderrFile(stderrFile);
 
-    const Optional<StringRef> redirects[] = {/*STDIN=*/llvm::None,
-                                             /*STDOUT=*/llvm::None,
-                                             /*STDERR=*/StringRef(stderrFile)};
-
-    bool failed = sys::ExecuteAndWait(clangBinary.get(), clangArgs,
-                                      /*env=*/nullptr, redirects);
+    StringRef stderrFileStr(stderrFile);
+    SmallVector<llvm::Optional<StringRef>, 3> Rd =
+      {/*STDIN=*/ llvm::None,
+       /*STDOUT=*/llvm::None,
+       /*STDERR=*/StringRef(stderrFile)};
+    ArrayRef<Optional<StringRef>> Redirects(Rd);
+    Optional<ArrayRef<StringRef>> Env;
+    auto Args = llvm::toStringRefArray(ClangArgv.data());
+    bool failed = sys::ExecuteAndWait(clangBinary.get(), Args,
+                                      Env, Redirects);
 
     if (failed) {
       auto bufferOr = MemoryBuffer::getFile(stderrFile);
@@ -366,8 +371,8 @@ getCodeCoverageSymbols(DiagnosticsEngine &diag,
         return make_error<StringError>("unable to read file", ec);
 
       std::string message = "'clang' invocation failed:\n";
-      for (auto *arg : clangArgs) {
-        if (arg == nullptr)
+      for (auto arg : Args) {
+        if (arg == "")
           continue;
         message.append(arg).append(1, ' ');
       }
