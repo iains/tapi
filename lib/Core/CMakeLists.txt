@@ -1,7 +1,7 @@
-set( LLVM_LINK_COMPONENTS  
+set( LLVM_LINK_COMPONENTS
+  Support 
   Object
   ObjCMetadata
-  BinaryFormat
   )
 
 add_tapi_library(tapiCore

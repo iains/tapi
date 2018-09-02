@@ -309,10 +309,10 @@ static Error readObjectiveCMetadata(MachOObjectFile *object,
   auto H = object->getHeader();
   auto arch = getArchType(H.cputype, H.cpusubtype);
 
-  auto error = Error::success();
-  MachOMetadata metadata(object, error);
-  if (error)
-    return std::move(error);
+  //auto error = Error::success();
+  MachOMetadata metadata(object/*, error*/);
+  //if (error)
+  //  return std::move(error);
 
   ///
   /// Classes
