@@ -332,7 +332,7 @@ getCodeCoverageSymbols(DiagnosticsEngine &diag, ArchitectureSet architectures,
   std::vector<std::unique_ptr<ExtendedInterfaceFile>> files;
   for (auto arch : architectures) {
     std::string archName = getArchName(arch);
-    const char *clangArgs[] = {"clang",
+    SmallVector<const char*, 128> Argv = {"clang",
                                "-dynamiclib",
                                "-fprofile-instr-generate",
                                "-fcoverage-mapping",
@@ -356,9 +356,12 @@ getCodeCoverageSymbols(DiagnosticsEngine &diag, ArchitectureSet architectures,
     FileRemover removeStderrFile(stderrFile);
 
     StringRef stderrFileStr(stderrFile);
-    const StringRef *redirects[] = {nullptr, nullptr, &stderrFileStr};
-    bool failed = sys::ExecuteAndWait(clangBinary.get(), clangArgs,
-                                      /*env=*/nullptr, redirects);
+    SmallVector<llvm::Optional<StringRef>, 3> Rd = {llvm::None, llvm::None, stderrFileStr};
+    ArrayRef<Optional<StringRef>> Redirects(Rd);
+    Optional<ArrayRef<StringRef>> Env;
+    auto Args = llvm::toStringRefArray(Argv.data());
+    bool failed = sys::ExecuteAndWait(clangBinary.get(), Args,
+                                      Env, Redirects);
 
     if (failed) {
       auto bufferOr = MemoryBuffer::getFile(stderrFile);
@@ -366,8 +369,8 @@ getCodeCoverageSymbols(DiagnosticsEngine &diag, ArchitectureSet architectures,
         return make_error<StringError>("unable to read file", ec);
 
       std::string message = "'clang' invocation failed:\n";
-      for (auto *arg : clangArgs) {
-        if (arg == nullptr)
+      for (auto arg : Args) {
+        if (arg == "")
           continue;
         message.append(arg).append(1, ' ');
       }
