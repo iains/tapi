@@ -32,13 +32,13 @@ namespace {
 
 struct ExportSection {
   std::vector<Architecture> archs;
-  std::vector<FlowStringRef> allowableClients;
-  std::vector<FlowStringRef> reexportedLibraries;
-  std::vector<FlowStringRef> symbols;
-  std::vector<FlowStringRef> classes;
-  std::vector<FlowStringRef> ivars;
-  std::vector<FlowStringRef> weakDefSymbols;
-  std::vector<FlowStringRef> tlvSymbols;
+  FlowStringRefVec allowableClients;
+  FlowStringRefVec reexportedLibraries;
+  FlowStringRefVec symbols;
+  FlowStringRefVec classes;
+  FlowStringRefVec ivars;
+  FlowStringRefVec weakDefSymbols;
+  FlowStringRefVec tlvSymbols;
 };
 
 } // end anonymous namespace.

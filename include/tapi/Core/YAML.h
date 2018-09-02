@@ -34,6 +34,7 @@ using UUID = std::pair<TAPI_INTERNAL::Architecture, std::string>;
 LLVM_YAML_IS_FLOW_SEQUENCE_VECTOR(UUID)
 
 LLVM_YAML_STRONG_TYPEDEF(StringRef, FlowStringRef)
+typedef std::vector<FlowStringRef> FlowStringRefVec;
 LLVM_YAML_IS_FLOW_SEQUENCE_VECTOR(FlowStringRef)
 
 namespace llvm {

@@ -31,23 +31,23 @@ namespace {
 
 struct ExportSection {
   std::vector<Architecture> archs;
-  std::vector<StringRef> allowableClients;
-  std::vector<StringRef> reexportedLibraries;
-  std::vector<StringRef> symbols;
-  std::vector<StringRef> classes;
-  std::vector<StringRef> classEHs;
-  std::vector<StringRef> ivars;
-  std::vector<StringRef> weakDefSymbols;
-  std::vector<StringRef> tlvSymbols;
+  FlowStringRefVec allowableClients;
+  FlowStringRefVec reexportedLibraries;
+  FlowStringRefVec symbols;
+  FlowStringRefVec classes;
+  FlowStringRefVec classEHs;
+  FlowStringRefVec ivars;
+  FlowStringRefVec weakDefSymbols;
+  FlowStringRefVec tlvSymbols;
 };
 
 struct UndefinedSection {
   std::vector<Architecture> archs;
-  std::vector<StringRef> symbols;
-  std::vector<StringRef> classes;
-  std::vector<StringRef> classEHs;
-  std::vector<StringRef> ivars;
-  std::vector<StringRef> weakRefSymbols;
+  FlowStringRefVec symbols;
+  FlowStringRefVec classes;
+  FlowStringRefVec classEHs;
+  FlowStringRefVec ivars;
+  FlowStringRefVec weakRefSymbols;
 };
 
   enum Flags : unsigned {

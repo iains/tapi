@@ -44,12 +44,12 @@ struct Availability {
 /// \brief
 struct ExportSection {
   std::vector<Availability> availabilities;
-  std::vector<FlowStringRef> symbols;
-  std::vector<FlowStringRef> classes;
-  std::vector<FlowStringRef> classEHs;
-  std::vector<FlowStringRef> ivars;
-  std::vector<FlowStringRef> weakDefSymbols;
-  std::vector<FlowStringRef> tlvSymbols;
+  FlowStringRefVec symbols;
+  FlowStringRefVec classes;
+  FlowStringRefVec classEHs;
+  FlowStringRefVec ivars;
+  FlowStringRefVec weakDefSymbols;
+  FlowStringRefVec tlvSymbols;
 };
 
 } // namespace
