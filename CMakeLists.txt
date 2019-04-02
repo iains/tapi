@@ -7,7 +7,7 @@ endif()
 set(TAPI_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(TAPI_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR})
 
-set(TAPI_FULL_VERSION "2.0.0" CACHE STRING "Specify tapi version.")
+set(TAPI_FULL_VERSION "2.0.1" CACHE STRING "Specify tapi version.")
 message(STATUS "TAPI version: ${TAPI_FULL_VERSION}")
 
 string(REGEX REPLACE "([0-9]+)\\.[0-9]+(\\.[0-9]+)*" "\\1" TAPI_VERSION_MAJOR
@@ -23,7 +23,7 @@ else()
 endif()
 set(TAPI_VERSION "${TAPI_VERSION_MAJOR}.${TAPI_VERSION_MINOR}.${TAPI_VERSION_PATCH}")
 
-set(TAPI_REPOSITORY_STRING "" CACHE STRING
+set(TAPI_REPOSITORY_STRING "https://github.com/iains/tapi.git" CACHE STRING
   "Vendor-specific text for showing the repository the source is taken from.")
 
 if(TAPI_REPOSITORY_STRING)
@@ -41,11 +41,11 @@ set(BACKEND_PACKAGE_STRING "${PACKAGE_STRING}")
 if(DEFINED ENV{RC_SUPPORTED_ARCHS})
   string(REPLACE " " ";" SUPPORTED_ARCHS $ENV{RC_SUPPORTED_ARCHS})
 else()
-  set(SUPPORTED_ARCHS i386 x86_64 x86_64h armv4t armv6 armv5 armv7 armv7s armv7k armv6m armv7m armv7em arm64)
+  set(SUPPORTED_ARCHS i386 x86_64 x86_64h armv4t armv6 armv5 armv7 armv7s armv7k armv6m armv7m armv7em arm64 ppc ppc64)
 endif()
 message(STATUS "Supported Architectures: ${SUPPORTED_ARCHS}")
 
-set(KNOWN_ARCHS i386 x86_64 x86_64h armv4t armv6 armv5 armv7 armv7s armv7k armv6m armv7m armv7em arm64)
+set(KNOWN_ARCHS i386 x86_64 x86_64h armv4t armv6 armv5 armv7 armv7s armv7k armv6m armv7m armv7em arm64 ppc ppc64)
 
 set (CONFIG_FILE ${CMAKE_CURRENT_BINARY_DIR}/include/tapi/Core/ArchitectureConfig.h)
 file(WRITE ${CONFIG_FILE} "#ifndef TAPI_CORE_ARCHITECTURE_CONFIG_H\n")
@@ -183,7 +183,7 @@ get_property(TAPI_TABLEGEN_TARGETS GLOBAL PROPERTY TAPI_TABLEGEN_TARGETS)
 list(APPEND LLVM_COMMON_DEPENDS ${TAPI_TABLEGEN_TARGETS})
 add_subdirectory(lib)
 add_subdirectory(tools)
-if( TAPI_INCLUDE_TESTS )
+if( NO AND TAPI_INCLUDE_TESTS )
   if(EXISTS ${LLVM_MAIN_SRC_DIR}/utils/unittest/googletest/include/gtest/gtest.h)
     add_subdirectory(unittests)
     list(APPEND TAPI_TEST_DEPS TapiUnitTests)
