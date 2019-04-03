@@ -1,3 +1,16 @@
+## tapi-201-for-llvm-7-1-with-emuTLS
+
+This is a branch for building toolchains based on GCC when the emulatedTLS
+has been split into a CRT (e.g. https://github.com/iains/gcc-8-branch.git)
+
+This branch has been tested with LLVM 7.1 with some additions to support
+older Darwin versions (https://github.com/iains/LLVM-7-branch.git).
+
+It builds automatically (using the branch mentioned) when this repo is cloned
+to the same level as the LLVM monorepo clone.
+
+Building outside this context hasn't been tried.
+
 # on-700rc2
 
 So I tried this on top of the 7.0.0rc2 sources with the changes here.
