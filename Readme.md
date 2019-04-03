@@ -1,3 +1,36 @@
+## wip-on-1000-10-8-for-llvm-7-1
+
+This is based off the Xcode 10 tapi sources (1000.10.8) but to build on top
+of LLVM 7.1, rather than llvm-swift.
+
+## tapi-201-for-llvm-7-1-with-emuTLS
+
+This is a branch for building toolchains based on GCC when the emulatedTLS
+has been split into a CRT (e.g. https://github.com/iains/gcc-8-branch.git)
+
+This branch has been tested with LLVM 7.1 with some additions to support
+older Darwin versions (https://github.com/iains/LLVM-7-branch.git).
+
+It builds automatically (using the branch mentioned) when this repo is cloned
+to the same level as the LLVM monorepo clone.
+
+Building outside this context hasn't been tried.
+
+# on-700rc2
+
+So I tried this on top of the 7.0.0rc2 sources with the changes here.
+
+plus:
+
+a) Add the ObjcMetadata library from Apple clang-800.0.42.1
+b) symlink tapi into clang/tools/tapi
+c) add  to clang/tools/CMakeLists.txt
+
+    add_llvm_external_project(tapi tapi)
+
+currently, 13 tests fail (and the inputs for IVarTest and Simple have to be
+commented out to get the build to run).
+
 # TAPI
 
 TAPI is a **T**ext-based **A**pplication **P**rogramming **I**nterface. It
