@@ -37,7 +37,7 @@ std::string Version::getFullVersionAsString() noexcept {
 #ifdef TAPI_VENDOR
   result += TAPI_VENDOR;
 #endif
-  result += "TAPI version " TAPI_MAKE_STRING(TAPI_VERSION);
+  result += " Based on Apple TAPI version " TAPI_MAKE_STRING(TAPI_VERSION);
 
 #ifdef TAPI_REPOSITORY_STRING
   result += " (" TAPI_REPOSITORY_STRING ")";
