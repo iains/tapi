@@ -75,6 +75,7 @@ template <> struct ScalarEnumerationTraits<Platform> {
     io.enumCase(platform, "watchos", Platform::watchOS);
     io.enumCase(platform, "tvos", Platform::tvOS);
     io.enumCase(platform, "bridgeos", Platform::bridgeOS);
+    io.enumCase(platform, "zippered", Platform::zippered);
   }
 };
 

@@ -63,6 +63,11 @@ enum class Platform : unsigned {
   /// \brief bridgeOS
   /// \since 1.2
   bridgeOS = 5,
+
+  /// \brief zippered
+  /// \since 2.0
+  zippered = 6,
+
 };
 
 ///
