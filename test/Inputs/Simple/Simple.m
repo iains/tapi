@@ -48,6 +48,8 @@ __attribute__((objc_exception))
 @end
 @implementation Basic4
 @end
+@implementation Basic4_2
+@end
 @implementation Basic5
 + (void)aClassMethod {}
 - (void)anInstanceMethod {}
@@ -93,3 +95,19 @@ __attribute__((visibility("hidden")))
 @implementation Basic9 (deprecated)
 @end
 
+@protocol PrivateProtocol
+- (void) privateProcotolMethod;
+@end
+
+@implementation FooClass
+- (void) baseMethod {}
+- (void) protocolMethod {}
+- (void) barMethod{}
+@end
+
+@interface FooClass (Private) <PrivateProtocol>
+@end
+
+@implementation FooClass (Private)
+- (void) privateProcotolMethod {}
+@end

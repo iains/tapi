@@ -2,7 +2,7 @@ set(SOURCES
   bundle.m
   )
 
-SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -arch x86_64")
+SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -arch x86_64 -arch i386")
 
 add_library(Bundle
   MODULE

@@ -1,17 +1,16 @@
 add_tapi_library(tapiDriver
+  API2XPIConverter.cpp
   ArchiveDriver.cpp
-  Diagnostics.cpp
+  Configuration.cpp
+  ConfigurationFile.cpp
   DirectoryScanner.cpp
   Driver.cpp
   DriverOptions.cpp
   DriverUtils.cpp
-  GenerateAPITestsDriver.cpp
+  HeaderGlob.cpp
   InstallAPIDriver.cpp
   Options.cpp
   ReexportDriver.cpp
-  ScanDriver.cpp
-  SDKDBDriver.cpp
-  SDKDBVerifier.cpp
   StubDriver.cpp
   Snapshot.cpp
   SnapshotFileSystem.cpp
@@ -22,6 +21,6 @@ add_tapi_library(tapiDriver
   LINK_LIBS
   tapiConfig
   tapiCore
-  tapiScanner
-  tapiSDKDB
+  tapiDiagnostics
+  tapiFrontend
   )

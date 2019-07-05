@@ -170,4 +170,74 @@ public:
 extern template class Simple<int>;
 } // end namespace test12
 
+namespace test13 {
+class Base {
+public:
+  virtual ~Base() {}
+  virtual void run1() = 0;
+  virtual void run2() {};
+  virtual void run3(); // key function.
+};
+
+class Sub : public Base {
+public:
+  void run1() override {}
+  void run2() override {}
+};
+
+} // end namespace test13
+
+namespace test14 {
+
+class __attribute__((visibility("hidden"))) Base
+{
+public:
+    Base() {}
+    virtual ~Base(); // keyfunction.
+    virtual void run1() const = 0;
+};
+
+class Sub : public Base
+{
+public:
+    Sub();
+    virtual ~Sub();
+    virtual void run1() const;
+    void run2() const {}
+};
+
+} // end namespace test14
+
+namespace test15 {
+
+class Base {
+public:
+  virtual ~Base() {}
+  virtual void run() {};
+};
+
+class Base1 {
+public:
+  virtual ~Base1() {}
+  virtual void run1() {};
+};
+
+class Sub : public Base, public Base1 {
+public:
+  Sub() {}
+  ~Sub();
+  void run() override;
+  void run1() override;
+};
+
+class Sub1 : public Base, public Base1 {
+public:
+  Sub1() {}
+  ~Sub1() = default;
+  void run() override;
+  void run1() override;
+};
+
+} // end namespace test15
+
 #endif

@@ -533,9 +533,14 @@ TEST(libtapiTBDv1, LIF_FallBack_armv7) {
       buffer.size(), CPU_TYPE_ARM, CPU_SUBTYPE_ARM_V7K,
       CpuSubTypeMatching::ABI_Compatible, PackedVersion32(9, 0, 0),
       errorMessage));
+  // BEGIN WORKAROUND FOR rdar://problem/25535679
+  // ASSERT_EQ(nullptr, file);
+  // ASSERT_EQ("missing required architecture armv7k in file Test.tbd",
+  //           errorMessage);
   ASSERT_NE(nullptr, file);
   ASSERT_TRUE(errorMessage.empty());
   ASSERT_EQ("_correct", file->exports().front().getName());
+  // END WORKAROUND
 
   errorMessage.clear();
   file = std::unique_ptr<LinkerInterfaceFile>(LinkerInterfaceFile::create(
@@ -574,9 +579,14 @@ TEST(libtapiTBDv1, LIF_FallBack_armv7s) {
       buffer.size(), CPU_TYPE_ARM, CPU_SUBTYPE_ARM_V7K,
       CpuSubTypeMatching::ABI_Compatible, PackedVersion32(9, 0, 0),
       errorMessage));
+  // BEGIN WORKAROUND FOR rdar://problem/25535679
+  // ASSERT_EQ(nullptr, file);
+  // ASSERT_EQ("missing required architecture armv7k in file Test.tbd",
+  //           errorMessage);
   ASSERT_NE(nullptr, file);
   ASSERT_TRUE(errorMessage.empty());
   ASSERT_EQ("_correct", file->exports().front().getName());
+  // END WORKAROUND
 
   errorMessage.clear();
   file = std::unique_ptr<LinkerInterfaceFile>(LinkerInterfaceFile::create(
@@ -597,9 +607,14 @@ TEST(libtapiTBDv1, LIF_FallBack_armv7k) {
       buffer.size(), CPU_TYPE_ARM, CPU_SUBTYPE_ARM_V7,
       CpuSubTypeMatching::ABI_Compatible, PackedVersion32(9, 0, 0),
       errorMessage));
+  // BEGIN WORKAROUND FOR rdar://problem/25535679
+  // ASSERT_EQ(nullptr, file);
+  // ASSERT_EQ("missing required architecture armv7 in file Test.tbd",
+  //           errorMessage);
   ASSERT_NE(nullptr, file);
   ASSERT_TRUE(errorMessage.empty());
   ASSERT_EQ("_correct", file->exports().front().getName());
+  // END WORKAROUND
 
   errorMessage.clear();
   file = std::unique_ptr<LinkerInterfaceFile>(LinkerInterfaceFile::create(
@@ -607,9 +622,14 @@ TEST(libtapiTBDv1, LIF_FallBack_armv7k) {
       buffer.size(), CPU_TYPE_ARM, CPU_SUBTYPE_ARM_V7S,
       CpuSubTypeMatching::ABI_Compatible, PackedVersion32(9, 0, 0),
       errorMessage));
+  // BEGIN WORKAROUND FOR rdar://problem/25535679
+  // ASSERT_EQ(nullptr, file);
+  // ASSERT_EQ("missing required architecture armv7s in file Test.tbd",
+  //           errorMessage);
   ASSERT_NE(nullptr, file);
   ASSERT_TRUE(errorMessage.empty());
   ASSERT_EQ("_correct", file->exports().front().getName());
+  // END WORKAROUND
 
   errorMessage.clear();
   file = std::unique_ptr<LinkerInterfaceFile>(LinkerInterfaceFile::create(

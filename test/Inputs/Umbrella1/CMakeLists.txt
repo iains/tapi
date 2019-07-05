@@ -4,10 +4,10 @@ set(SOURCES
 set(PUBLIC_HEADERS
   Headers/AAA.h
   Headers/Umbrella1.h
-  Headers/Umbrella1Private.h
+  Headers/Umbrella1_Private.h
   )
 set(PRIVATE_HEADERS
-  PrivateHeaders/AAA.h
+  PrivateHeaders/AAAA.h
   PrivateHeaders/Umbrella1Private.h
   )
 

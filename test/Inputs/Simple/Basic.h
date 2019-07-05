@@ -25,6 +25,18 @@
 }
 @end
 
+@interface Basic4_2 : NSObject {
+@private
+  BOOL ivar4;
+@package
+  BOOL ivar3;
+@protected
+  BOOL ivar2;
+@public
+  BOOL ivar1;
+}
+@end
+
 @interface Basic5 : NSObject
 + (void)aClassMethod;
 - (void)anInstanceMethod;
@@ -75,4 +87,3 @@ __attribute__((visibility("hidden")))
 @interface Basic9 (deprecated)
 @property(readwrite) BOOL aProperty NS_DEPRECATED_MAC(10_8, 10_10);
 @end
-

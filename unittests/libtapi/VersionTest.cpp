@@ -31,13 +31,17 @@ TEST(libtapi, Version_getAsString) {
 }
 
 TEST(libtapi, Version_getFullVersionAsString) {
+  std::string vendor;
+#ifdef TAPI_VENDOR
+  vendor = TAPI_VENDOR;
+#endif
 #ifdef TAPI_REPOSITORY_STRING
-  EXPECT_STREQ(tapi::Version::getFullVersionAsString().c_str(),
-               "Apple TAPI version " MAKE_STRING(
-                   TAPI_VERSION) " (" TAPI_REPOSITORY_STRING ")");
+  EXPECT_EQ(tapi::Version::getFullVersionAsString(),
+            vendor + "TAPI version " MAKE_STRING(
+                         TAPI_VERSION) " (" TAPI_REPOSITORY_STRING ")");
 #else
-  EXPECT_STREQ(tapi::Version::getFullVersionAsString().c_str(),
-               "Apple TAPI version " MAKE_STRING(TAPI_VERSION));
+  EXPECT_EQ(tapi::Version::getFullVersionAsString(),
+            vendor + "TAPI version " MAKE_STRING(TAPI_VERSION));
 #endif
 }
 

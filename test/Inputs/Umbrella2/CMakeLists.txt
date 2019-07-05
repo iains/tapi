@@ -6,7 +6,7 @@ set(PUBLIC_HEADERS
   Headers/SpecialUmbrella.h
   )
 set(PRIVATE_HEADERS
-  PrivateHeaders/AAA.h
+  PrivateHeaders/AAAA.h
   PrivateHeaders/SpecialPrivateUmbrella.h
   )
 

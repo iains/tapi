@@ -5,5 +5,4 @@
 ; RUN: diff -a %t/Version2.tbd %p/../Outputs/Version2.tbd
 
 CHECK-NOT: error
-CHECK-NOT: warning
-
+CHECK:     warning: cannot find protocol definition for 'ForwardProcotol'

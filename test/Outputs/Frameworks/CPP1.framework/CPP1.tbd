@@ -1,4 +1,4 @@
---- !tapi-tbd-v2
+--- !tapi-tbd-v3
 archs:           [ x86_64 ]
 platform:        macosx
 flags:           [ not_app_extension_safe ]

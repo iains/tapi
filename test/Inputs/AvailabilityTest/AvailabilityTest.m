@@ -18,3 +18,8 @@ int publicGlobalVariable2;
 #endif
 
 int publicGlobalVariable3;
+int publicGlobalVariable4;
+
+#ifndef __i386__
+int publicGlobalVariable6;
+#endif

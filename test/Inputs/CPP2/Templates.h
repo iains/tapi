@@ -40,6 +40,8 @@ public:
   Bazz() {}
 
   template <class T> int buzz(T a);
+
+  float implicit() const { return foo1(0.0f); }
 };
 
 template <class T> int Bazz::buzz(T a) { return sizeof(T); }

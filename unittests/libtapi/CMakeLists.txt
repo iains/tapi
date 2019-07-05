@@ -4,10 +4,12 @@ add_tapi_unittest(libtapiTests
   APIVersionTest.cpp
   LinkerInterfaceFileTest_TBD_v1.cpp
   LinkerInterfaceFileTest_TBD_v2.cpp
+  LinkerInterfaceFileTest_TBD_v3.cpp
   VersionTest.cpp
   )
 
 target_link_libraries(libtapiTests
+  PRIVATE
   libtapi
   )
 
