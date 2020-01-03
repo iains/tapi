@@ -55,6 +55,7 @@ void ScalarEnumerationTraits<Platform>::enumeration(IO &io,
   io.enumCase(platform, "tvos", Platform::tvOS);
   io.enumCase(platform, "tvos", Platform::tvOSSimulator);
   io.enumCase(platform, "bridgeos", Platform::bridgeOS);
+  io.enumCase(platform, "zippered", Platform::zippered);
 }
 
 using TAPI_INTERNAL::Architecture;

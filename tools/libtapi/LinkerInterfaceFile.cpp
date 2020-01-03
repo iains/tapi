@@ -298,6 +298,8 @@ static tapi::Platform mapPlatform(tapi::internal::Platform platform) {
     return Platform::tvOS;
   case tapi::internal::Platform::bridgeOS:
     return Platform::bridgeOS;
+  case tapi::internal::Platform::zippered:
+    return Platform::zippered;
   }
 }
 
