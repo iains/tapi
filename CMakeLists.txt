@@ -5,8 +5,11 @@ endif()
 set(TAPI_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(TAPI_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR})
 
-set(TAPI_FULL_VERSION "2.0.2" CACHE STRING "Specify tapi version.")
+set(TAPI_FULL_VERSION "2.0.3" CACHE STRING "Specify tapi version.")
 message(STATUS "TAPI version: ${TAPI_FULL_VERSION}")
+
+set(TAPI_APPLE_VERSION "1000.10.8" CACHE STRING "Specify tapi version.")
+message(STATUS "APPLE Tapi version: ${TAPI_APPLE_VERSION}")
 
 string(REGEX REPLACE "([0-9]+)\\.[0-9]+(\\.[0-9]+)*" "\\1" TAPI_VERSION_MAJOR
   ${TAPI_FULL_VERSION})
@@ -34,6 +37,10 @@ set(TAPI_VENDOR ${PACKAGE_VENDOR} CACHE STRING
 if (TAPI_VENDOR)
   add_definitions( -DTAPI_VENDOR="${TAPI_VENDOR} ")
 endif()
+
+if (TAPI_APPLE_VERSION)
+  add_definitions( -DAPPLE_VERSION="${TAPI_APPLE_VERSION}")
+endif ()
 
 if(DEFINED ENV{RC_SUPPORTED_ARCHS})
   string(REPLACE " " ";" TAPI_SUPPORTED_ARCHS $ENV{RC_SUPPORTED_ARCHS})

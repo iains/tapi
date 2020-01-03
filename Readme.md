@@ -1,3 +1,13 @@
+## wip-on-1000-10-8-for-LLVM-7.1.1
+
+Version 2.0.3
+
+* This adds support for the 'zippered' platform type.  It is sufficient to
+consume the SDKs for Darwin18/MacOS10.14 and Darwin19/MacOS10.15.
+
+* The library version now reflects the TAPI edition, rather than the LLVM
+version it was built on top of.
+
 ## wip-on-1000-10-8-for-llvm-7-1
 
 This is based off the Xcode 10 tapi sources (1000.10.8) but to build on top
